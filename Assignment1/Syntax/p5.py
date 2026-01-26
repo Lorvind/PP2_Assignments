@@ -1,0 +1,1 @@
+s = "Don't do it like this"; print(s)
