@@ -1,1 +1,7 @@
-print('Here is a quote "A quote"')
+a = "Picle"
+
+s = "I ate a picle"
+
+if a in s:
+    print("Nice")
+

@@ -1,1 +1,3 @@
 """ Another one """
+
+print("Something")

@@ -1,1 +1,1 @@
-print("Hello again, unnessecary example.")
+print('Here is a quote "A quote"')
