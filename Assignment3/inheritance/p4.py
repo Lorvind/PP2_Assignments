@@ -22,7 +22,7 @@ class Player(Entity, Attacker):
             health=health,
             speed=speed,
             position=position,
-            damage=damage
+            damage=damage               
         )
 
 player1 = Player(health=100, speed = 10, position=0, damage=20)
