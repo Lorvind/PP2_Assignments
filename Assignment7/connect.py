@@ -1,6 +1,8 @@
 import psycopg2
+from config import load_config
 
-def connect_to_db():
-    with psycopg2.connect() as conn:
-        with conn.cursor() as cur:
-            pass
+def connect():
+
+    params = load_config()
+    conn = psycopg2.connect(**params)
+    return conn
