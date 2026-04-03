@@ -190,12 +190,37 @@ def bulk_insert():
     phones = []
 
     for contact in contacts:
-        names.append(contact[0])
-        phones.append(contact[1])
+        names.append(contact.split()[0])
+        phones.append(contact.split()[1])
 
-    execute_db_logic("bulk_insert_procedure(%s, %s)", (names, phones), is_procedure=True)
+    conn = connect()
+    cur = conn.cursor()
 
-    print("Inserted successfully")
+    try:
+        cur.execute("CALL bulk_insert_procedure(%s, %s)", (names, phones))
+
+        cur.execute("SELECT first_name, phone FROM bulk_errors;")
+        errors = cur.fetchall()
+        conn.commit()
+
+        if errors:
+            print(f"\n--- {len(errors)} Validation Errors Found ---")
+            print(f"{'Name':<20} | {'Invalid Phone':<15}")
+            print("-" * 40)
+            for name, phone in errors:
+                print(f"{name or 'None':<20} | {phone or 'None':<15}")
+        else:
+            print("\nSuccess! All records processed with no validation errors.")
+    
+    except Exception as e:
+        if conn:
+            conn.rollback()
+        print(f"Error: {e}")
+
+    finally:
+        if conn:
+            cur.close()
+            conn.close()
 
 def delete_by_name_or_phone():
     name_or_phone = input("Input name or phone: ")
