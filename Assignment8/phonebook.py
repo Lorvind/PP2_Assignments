@@ -181,6 +181,8 @@ def insert_or_update():
 
     execute_db_logic("insert_or_update(%s, %s)", (name, phone), is_procedure=True)
 
+    print("Upserted succesfully")
+
 def bulk_insert():
     print("Input in this format: name1 phone1, name2 phone2")
     contacts = input().split(',')
@@ -193,10 +195,14 @@ def bulk_insert():
 
     execute_db_logic("bulk_insert_procedure(%s, %s)", (names, phones), is_procedure=True)
 
+    print("Inserted successfully")
+
 def delete_by_name_or_phone():
     name_or_phone = input("Input name or phone: ")
 
     execute_db_logic("delete_contact(%s)", (name_or_phone,), is_procedure=True)
+
+    print("Deleted successfully")
 
 def functions_list():
     print("1 - Search by pattern")
@@ -221,7 +227,7 @@ def procedures_list():
     elif choice == '2':
         bulk_insert()
     elif choice == '3':
-        delete_
+        delete_by_name_or_phone()
 
 def update_functions():
     conn = connect()

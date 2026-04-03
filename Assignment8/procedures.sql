@@ -2,8 +2,9 @@ CREATE OR REPLACE PROCEDURE insert_or_update(p_name TEXT, p_phone TEXT) AS $$
 BEGIN
     INSERT INTO phonebook (first_name, phone)
     VALUES (p_name, p_phone)
-    ON CONFLICT (phone) DO UPDATE 
-    SET name = EXCLUDED.name;
+    ON CONFLICT (first_name)
+    DO UPDATE
+    SET phone = EXCLUDED.phone;
 END;
 $$ LANGUAGE plpgsql;
 
