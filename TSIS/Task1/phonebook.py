@@ -4,13 +4,13 @@ import psycopg2
 import psycopg2.extras
 from datetime import date
 
-#КОНФИГУРАЦИЯ
+
 from connect import get_conn
 from config import PAGE_SIZE
 
 PAGE_SIZE = 5   
 
-#ВСПОМОГАТЕЛЬНЫЕ ЭЛЕМЕНТЫ
+
 SORT_FIELDS = {
     "1": ("first_name",  "By name"),
     "2": ("birthday",    "By birthday"),
@@ -36,7 +36,7 @@ def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
 
-#ПОИСК КОНТАКТОВ
+
 def fetch_contacts(conn, *, group_id=None, email_search=None,
                    sort_field="first_name", page=0):
     """
@@ -97,7 +97,7 @@ def fetch_contacts(conn, *, group_id=None, email_search=None,
     return rows, total
 
 
-#ОТОБРАЖЕНИЕ КОНТАКТОВ
+
 def print_contacts(rows, total, page, sort_label, group_name, email_search):
     clear()
     total_pages = max(1, (total + PAGE_SIZE - 1) // PAGE_SIZE)
@@ -135,7 +135,7 @@ def print_contacts(rows, total, page, sort_label, group_name, email_search):
     hr()
 
 
-#ФИЛЬТР
+
 def menu_filter(conn, state):
     """Prompts user to select a group for filtering."""
     with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
@@ -185,7 +185,7 @@ def menu_sort(state):
         state["page"]       = 0
 
 
-#ГЛАВНЫЙ ЦИКЛ
+
 def print_help():
     cmds = [
         ("next",   "next page"),

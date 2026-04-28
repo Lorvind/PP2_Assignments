@@ -3,7 +3,7 @@ WINDOW_HEIGHT = 620
 GRID_SIZE     = 25    
 CELL_SIZE     = WINDOW_WIDTH // GRID_SIZE   
 
-FPS           = 500   
+FPS           = 250   
 BASE_SPEED    = 30 
 SPEED_FLOOR   = 3     
 SPEED_STEP    = 1     
